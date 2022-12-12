@@ -14,12 +14,12 @@ import {
   TextureLoader,
 } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-//import { backAndForth } from "./components/utills";
+import { backAndForth } from "./components/utills";
 
 function App() {
   //camera setup
   const camera = new PerspectiveCamera(
-    80,
+    50,
     window.innerHeight / window.innerHeight,
     1,
     2000
@@ -37,12 +37,16 @@ function App() {
   //------add object to the scene
   //------add a grid helper
   scene.add(new GridHelper(32, 32, 0x888888, 0x444444));
+  //------create a new reference to a texture
+  const texture_01 = new TextureLoader().load(
+    "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/weathered_planks/weathered_planks_diff_4k.png"
+  );
   //------create a new reference to an object
   const cube = new Mesh(
     new BoxGeometry(10, 10, 10),
-    new MeshBasicMaterial({ color: 0x00ff00 })
+    new MeshBasicMaterial({ map: texture_01 })
   );
-  const texture_01 = new TextureLoader().load("./assets/my-texture.jpg");
+
   //------add the reference to the object to the scene
   scene.add(cube);
   //------can move the object in the scene
@@ -52,8 +56,8 @@ function App() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
     console.log(cube.position);
-    cube.position.x += 0.01;
-    //backAndForth(cube);
+    //cube.position.x += 0.01;
+    backAndForth(cube);
   }
   useEffect(() => {
     if (renderer.domElement) {
@@ -75,7 +79,14 @@ function App() {
   //camera control
   const control = new OrbitControls(camera, renderer.domElement);
 
-  return <div>hello</div>;
+  return (
+    <div>
+      <img
+        src="https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/weathered_planks/weathered_planks_diff_4k.png"
+        alt="null"
+      />
+    </div>
+  );
 }
 
 export default App;
