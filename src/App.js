@@ -112,7 +112,8 @@ function App() {
 
     cube.rotation.x += 0.01;
     torus.rotation.y -= 0.01;
-    cube.position.x += 0.005;
+    //cube.position.x += 0.005;
+    backAndForth(cube);
     torus.position.x -= 0.005;
   }
 
@@ -124,7 +125,13 @@ function App() {
     }
   }, [renderer]);
 
-  return <div>HELLO Lorem ipsum</div>;
+  return (
+    <div>
+      aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+      aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+      aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa HELLO Lorem ipsum
+    </div>
+  );
 }
 
 export default App;
